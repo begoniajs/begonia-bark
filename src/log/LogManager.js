@@ -1,11 +1,11 @@
 /**
  * 日志管理类
- * 
+ *
  * @author Brave Chan on 2017.8
- * 
+ *
  */
 //===============================================
-import util from '../util';
+
 //==============================================
 let _debug = false;
 const NORMAL = 'l1';
@@ -19,6 +19,50 @@ const style = {
     l4:'log__txt--warn',
 };
 let _logList = [];
+/**
+ * @internal
+ * @description 格式化时间
+ * @param {Number} num [required] 从1970.1.1至今的毫秒数
+ * @param {Boolean} limit 是否只返回y-m-d的形式
+ * @param {Boolean} noSecond 是否取出时分秒
+ * @returns {String} 时间格式
+ */
+function formatTime(num, limit = true, noSecond = false) {
+  if (typeof num !== 'number' || !Number.isInteger(+num)) {
+    return num;
+  }
+  const date = new Date(num);
+  const year = date.getFullYear();
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
+
+  const ymd = [year, month, day].map(formatNumber).join('-');
+  if (limit) {
+    return ymd;
+  }
+
+  const hour = date.getHours();
+  const minute = date.getMinutes();
+  const second = date.getSeconds();
+
+  let list = [hour, minute, second];
+  if (noSecond) {
+    list = list.slice(0, list.length - 1);
+  }
+
+  return ymd + ' ' + list.map(formatNumber).join(':')
+}
+
+/**
+ * @internal
+ * @description 格式化分秒数字
+ * @param {Number} n [required] 数字
+ * @returns {String} 格式化后的数字
+ */
+function formatNumber(n) {
+  n = n.toString();
+  return n[1] ? n : '0' + n;
+}
 //===============================================
 /**
  * 日志单项
@@ -28,15 +72,15 @@ class LogItem{
         this.className = style[type];
         this.message = message;
         this.detail = detail;
-        this.time = util.formatTime(new Date().getTime(),false);
+        this.time = formatTime(new Date().getTime(),false);
     }
 }
 //================================================
 /**
  * @private
- * 
+ *
  * 变为数组
- * @param {*} list 
+ * @param {*} list
  */
 function toArray(list){
     return Array.from(list);
@@ -45,7 +89,7 @@ function toArray(list){
 /**
  * @private
  * 将对象处理成json字符串
- * @param {*} obj 
+ * @param {*} obj
  */
 function handleObj(obj){
     try{
@@ -59,9 +103,9 @@ function handleObj(obj){
 
 /**
  *  @private
- * 
+ *
  * 将日志信息整理合并为单条字符串
- * @param {*} list 
+ * @param {*} list
  */
 function tidyMessage(list){
     for(let i=0,len=list.length;i<len;i++){
@@ -76,7 +120,7 @@ function tidyMessage(list){
 //================================================
 /**
  *  @public
- * 
+ *
  * 输出普通日志
  */
 function trace(){
@@ -89,7 +133,7 @@ function trace(){
 }
 /**
  *  @public
- * 
+ *
  * 输出信息日志
  */
 function info(){
@@ -102,7 +146,7 @@ function info(){
 }
 /**
  *  @public
- * 
+ *
  * 输出错误日志
  */
 function error(){
@@ -115,7 +159,7 @@ function error(){
 }
 /**
  * @public
- * 
+ *
  * 输出警告日志
  */
 function warn(){
@@ -154,7 +198,7 @@ export default {
     /**
      * 装饰函数
      * 可以为vmp对象提供快捷使用方法
-     * @param {ViewModelProxy} vmp 
+     * @param {ViewModelProxy} vmp
      */
     decorator(vmp){
         if(typeof vmp.trace === 'undefined'){
@@ -162,7 +206,7 @@ export default {
         }else{
             if(_debug){
                 console.error("In LogManager,when do decorate vmp,there is same key of trace in vmp already,please check.");
-            }            
+            }
             return;
         }
 
@@ -171,7 +215,7 @@ export default {
         }else{
             if(_debug){
                 console.error("In LogManager,when do decorate vmp,there is same key of info in vmp already,please check.");
-            }            
+            }
             return;
         }
 
@@ -180,7 +224,7 @@ export default {
         }else{
             if(_debug){
                 console.error("In LogManager,when do decorate vmp,there is same key of error in vmp already,please check.");
-            }            
+            }
             return;
         }
 
@@ -189,13 +233,13 @@ export default {
         }else{
             if(_debug){
                 console.error("In LogManager,when do decorate vmp,there is same key of warn in vmp already,please check.");
-            }            
+            }
             return;
         }
     },
     /**
      * 清理vmp上的装饰函数
-     * @param {ViewModelProxy} vmp 
+     * @param {ViewModelProxy} vmp
      */
     clearVMP(vmp){
         if(!vmp){
