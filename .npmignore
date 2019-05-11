@@ -7,3 +7,4 @@ rollup.config.js
 /analyze/
 /doc/
 gulpfile.js
+/gulpfile.js/

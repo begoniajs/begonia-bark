@@ -96,7 +96,7 @@ declare class Chain {
  * - data 如果最后一次调用`next()`传入了参数，参数将会作为回调函数的参数被返回
  * @param {object} scope [optional] 希望队列中的函数和回调函数中的this指向
  */
-export function getChain(
+export default function getChain(
   list: Array<(proxy: IProxy) => void>,
   complete?: (err: (object | null), res?: any) => void,
   scope?: object

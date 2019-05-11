@@ -63,7 +63,7 @@ function get(url, data = {}) {
   });
 }
 
-export {
+export default {
   post,
   get,
 }

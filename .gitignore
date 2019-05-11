@@ -9,3 +9,12 @@ yarn-error.log*
 /analyze/
 /miniprogram_dist/
 /dist/
+/chain/
+/frame/
+/http/
+/log/
+/net/
+/pool/
+/storage/
+/versionCheck/
+/worker/
