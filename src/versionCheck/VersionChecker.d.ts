@@ -6,7 +6,11 @@ declare namespace VersionChecker {
    * @param {string} baseVersion [required] 基础版本
    * @param {() => void} cb [optional] 版本安全结果回调
    */
-  export function check(currentVersion: string, baseVersion: string, cb?: () => void): void;
+  export function check(
+    currentVersion: string,
+    baseVersion: string,
+    cb?: (err: null | any, res: null | boolean) => void
+  ): void;
 }
 
 export default VersionChecker;

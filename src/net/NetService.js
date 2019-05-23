@@ -6,9 +6,10 @@
 let _debug = false;
 //===============================================
 const prompt = {
-    '2g':function(goodFn,badFn){
+    '2g':function(goodFn, badFn, isWatch = false) {
         if(typeof goodFn === 'function'){
             goodFn({
+              isWatch,
               isWarning: true,
               type: '2g',
               title:'网络不畅',
@@ -16,38 +17,43 @@ const prompt = {
           });
         }
     },
-    'none':function(goodFn,badFn){
+    'none':function(goodFn, badFn, isWatch = false) {
         if(typeof badFn === 'function'){
             badFn({
+              isWatch,
               title:'网络有问题',
               content:'您当前网络环境可能出现了问题，数据完全加载不了，请您检查网络连接是否正常，谢谢。',
           });
         }
     },
-    'wifi':function(goodFn,badFn){
+    'wifi':function(goodFn, badFn, isWatch = false) {
         if(typeof goodFn === 'function'){
             goodFn({
+              isWatch,
               type: 'wifi'
             });
         }
     },
-    '3g':function(goodFn,badFn){
+    '3g':function(goodFn, badFn, isWatch = false) {
         if(typeof goodFn === 'function'){
             goodFn({
+              isWatch,
               type: '3g'
             });
         }
     },
-    '4g':function(goodFn,badFn){
+    '4g':function(goodFn, badFn, isWatch = false) {
         if(typeof goodFn === 'function'){
             goodFn({
+              isWatch,
               type: '4g'
             });
         }
     },
-    'unknow':function(goodFn,badFn){
+    'unknow':function(goodFn, badFn, isWatch = false) {
         if(typeof goodFn === 'function'){
             goodFn({
+              isWatch,
               type: 'unknow',
               isWarning: true,
               title:'网络环境不明',
@@ -55,9 +61,10 @@ const prompt = {
           });
         }
     },
-    default(goodFn, badFn) {
+    default(goodFn, badFn, isWatch = false)  {
       if (typeof badFn === 'function') {
         badFn({
+          isWatch,
           title:'无法检测网络状态',
           content:'无法检测您当前所在网络状态，请您检查网络连接是否正常，或者请您切换到较好的网络环境再使用。',
         });
@@ -77,12 +84,12 @@ function watchNet(goodFn, badFn){
     if (wx.onNetworkStatusChange) {
         wx.onNetworkStatusChange(function(res){
             if(!res.isConnected){
-                return prompt['none'](null, badFn);
+                return prompt['none'](null, badFn, true);
             }
 
             let fn = prompt[res.networkType] || prompt.default;
             if(typeof fn === 'function'){
-                fn(goodFn, badFn);
+                fn(goodFn, badFn, true);
             }
         });
     } else {

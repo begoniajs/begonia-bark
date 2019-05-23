@@ -6,14 +6,18 @@ interface IGoodNet {
   // 信息的标题，仅在警告信息时存在
   title?: string,
   // 信息的详情，仅在警告信息时存在
-  content?: string
+  content?: string,
+  // 是否在监控状态
+  isWatch?: boolean
 }
 
 interface IBadNet {
   // 错误标题
   title: string,
   // 问题详情
-  content?: string
+  content?: string,
+  // 是否在监控状态
+  isWatch?: boolean
 }
 
 /**
