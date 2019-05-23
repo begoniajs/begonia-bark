@@ -3,16 +3,23 @@
  * @param {String} url [required] 请求地址
  * @param {any} data [optional] 参数
  */
-function post(url, data = {}) {
+function post(url = '', data = {}, opt = {}) {
+  if (!url) {
+    return Promise.reject({
+      isError: true,
+      message: 'param error',
+      detail: `The param url that is wrong--->${url}`
+    });
+  }
   return new Promise(function (resolve, reject) {
     wx.request({
       url: url,
       data: data,
       dataType: 'json',
       method: 'POST',
-      header: {
+      header: Object.assign({}, opt.header || {}, {
         'content-type': 'application/x-www-form-urlencoded',
-      },
+      }),
       success(res) {
         let canUse = res && res.data;
         if (!canUse) {
@@ -37,13 +44,21 @@ function post(url, data = {}) {
  * @param {String} url [required] 请求地址
  * @param {any} data [optional] 参数对象集合
  */
-function get(url, data = {}) {
+function get(url = '', data = {}, opt = {}) {
+  if (!url) {
+    return Promise.reject({
+      isError: true,
+      message: 'param error',
+      detail: `The param url that is wrong--->${url}`
+    });
+  }
   return new Promise(function (resolve, reject) {
     wx.request({
       url: url,
       data: data,
       dataType: 'json',
       method: 'GET',
+      header: Object.assign({}, opt.header || {}, {}),
       success(res) {
         let canUse = res && res.data;
         if (!canUse) {
