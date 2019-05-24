@@ -5,7 +5,7 @@ declare class StorageInfo {
    * @param {string} masterKey [required] 存储主键
    * @param {boolean} isSync [optional] 方法是否为同步
    */
-  constructor(invalidateTime: number, masterKey: string, isSync?: boolean): void;
+  constructor(invalidateTime: number, masterKey: string, isSync?: boolean);
   /**
    * @description 过期时间的毫秒数
    */
@@ -14,15 +14,15 @@ declare class StorageInfo {
    * @public
    * @description 按照参数保存数据到缓存
    * @param {any[]} params [required] 参数集合
-   * @param {object} data [required] 保存的值
+   * @param {any} data [required] 保存的值
    * @param {(error: object, result: any) => void} cb [optional] 回调函数，`function(error,result){}`
    */
-  save(params: any[], data: object, cb: (error: object, result: any) => void): void;
+  save(params: any[], data: any, cb: (error: object, result: any) => void): void;
   /**
    * @public
    * @description 按照参数读取缓存
    * @param {any[]} params [required] 参数集合
-   * @param {(error: object, result: any) => void} cb [optional] 回调函数，`function(error,result){}`
+   * @param {(error: object, result: any) => void} cb [required] 回调函数，`function(error,result){}`
    */
   read(params: any[], cb: (error: object, result: any) => void): void;
   /**
@@ -142,8 +142,9 @@ declare namespace Storage {
    * @description 合成用于存储的键名,键名不仅可用于存储，读取，还可以用于主动删除缓存
    * @param { masterKey } masterKey [required] 主键名
    * @param { params } params [required] 参数集合
+   * @returns {string}
    */
-  export function combineSaveKey(masterKey: string, params: any[]): void;
+  export function combineSaveKey(masterKey: string, params: any[]): string;
 }
 
 export default Storage;

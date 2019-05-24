@@ -34,7 +34,7 @@ declare namespace NetService {
   /**
    * @public
    *
-   * @description 监控网络状态
+   * @description 检测网络状态
    * @param {(msg: IGoodNet) => void} goodFn [optional] 网络变好时的回调
    * @param {(msg: IBadNet) => void} badFn [optional] 网络变差是的回调
    */
@@ -42,7 +42,7 @@ declare namespace NetService {
   /**
    * @public
    *
-   * @description 检测网络状态
+   * @description 监控网络状态
    * @param {(msg: IGoodNet) => void} goodFn [optional] 网络情况好时调用该回调
    * @param {(msg: IBadNet) => void} badFn [optional] 网络情况不好时调用该回调
    */

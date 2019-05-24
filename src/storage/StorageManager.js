@@ -245,6 +245,7 @@ function createRead(isSync) {
  * @return {Boolean} true 准备就绪，false 出现错误
  */
 function prepareSave(params, data, cb, masterKey, invalidateTime) {
+
   if (!checkSaveParams(params, cb)) {
     return false;
   }
@@ -477,7 +478,7 @@ function deleteDataByMasterKey(masterKey) {
  * @param {String} masterKey [required] 主键名
  * @param {Number | String} invalidateTime [required] 存储数据的持续时间段
  * @param {Array} params [required] 参数集合
- * @param {*} data [optional] 存储的值
+ * @param {any} data [optional] 存储的值
  * @param {Function} cb [optional] 回调函数，`function(error,result){}`
  */
 function quickSave(masterKey, invalidateTime = 0, params, data, cb) {
@@ -487,7 +488,7 @@ function quickSave(masterKey, invalidateTime = 0, params, data, cb) {
     }
     return;
   }
-  let canUse = prepareSave.apply(this, [params, cb], masterKey, invalidateTime);
+  let canUse = prepareSave.apply(this, [params, data, cb], masterKey, invalidateTime);
   if (canUse === false) {
     return;
   }
@@ -788,9 +789,10 @@ export default {
     limitSize = null;
     storageKeys = null;
     limitChecking = null;
-    storageList = null;     //下一步增加每个缓存对象再此时也销毁的方法
+    storageList = null;
     noop = null;
     _debug = null;
+    //下一步增加每个缓存对象再此时也销毁的方法
   },
   //========================================
   /**

@@ -6,10 +6,15 @@
  */
 declare class Pool {
   /**
+   * @public
+   * @description 设置清理对象池的时间
+   */
+  clearTime: number;
+  /**
    * @description 构造函数
    * @param {(...args: any[]) => void} CLASS_FN [required] 一个类型的构造函数
    */
-  constructor(CLASS_FN: (...args: any[]) => void): void;
+  constructor(CLASS_FN: (...args: any[]) => void);
   /**
    * @public
    * @description 创建一定数目的对象进入对象池

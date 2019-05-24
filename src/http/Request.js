@@ -26,7 +26,7 @@ function post(url = '', data = {}, opt = {}) {
           return reject({
             isError: true,
             message: 'server back error',
-            detail: JSON.stringify(res),
+            detail: res,
           });
         }
         return resolve(res.data);
@@ -65,7 +65,7 @@ function get(url = '', data = {}, opt = {}) {
           return reject({
             isError: true,
             message: 'server back error',
-            detail: JSON.stringify(res),
+            detail: res,
           });
         }
         return resolve(res.data);

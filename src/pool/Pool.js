@@ -11,6 +11,15 @@ export default class Pool {
     this.objList = [];
     this.ClassItem = CLASS_FN;
     this.clearTimer = null;
+    this._clearTimeNum = 0;
+  }
+
+  set clearTime(value) {
+    this._clearTimeNum = value || CLEAR_TIMER;
+  }
+
+  get clearTime() {
+    return this._clearTimeNum;
   }
 
   /**
@@ -124,7 +133,7 @@ export default class Pool {
     if (this.clearTimer) {
       return;
     }
-    this.clearTimer = setTimeout(this._doTimeClear.bind(this), CLEAR_TIMER);
+    this.clearTimer = setTimeout(this._doTimeClear.bind(this), this._clearTimeNum || CLEAR_TIMER);
   }
 
   /**

@@ -53,9 +53,9 @@ declare namespace WorkerManager {
  * @description 向worker发送消息
  * @param {string} workerKey [required] 要使用的worker的键名
  * @param {object} data [optional] 发送的消息数据对象
- * @param {(err: objcet, res: any) => void} cb [optional] 结果回调函数
+ * @param {(err: object, res: any) => void} cb [optional] 结果回调函数
  */
-  export function message(workerKey: string, data?: object, cb?: (err: objcet, res: any) => void): void;
+  export function message(workerKey: string, data?: object, cb?: (err: object, res: any) => void): void;
   /**
    * @public
    * @description 清空所有的workers
