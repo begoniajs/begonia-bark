@@ -83,7 +83,7 @@ let masterKey = "1:groupList"
 
 ```js
 {
-    "1:groupList":"1520412909873|SALT|900000|SALT|[...]"
+    "1:groupList":"saveTime|SALT|invalidateTime|SALT|[...]"
 }
 ```
 
