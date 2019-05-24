@@ -45,11 +45,11 @@ begonia-bark目前提供如下功能，具体使用细节，可以查看相应�
 - [帧模拟 frame](https://github.com/begoniajs/begonia-bark/blob/master/doc/frame.md) 提供帧模拟循环，可以用来实现动画或者canvas动画帧循环
 - [http请求对象 Request](https://github.com/begoniajs/begonia-bark/blob/master/doc/http.md) 对小程序http请求方法进行封装，并提供Promise形式返回。
 - [log日志 LogManager](https://github.com/begoniajs/begonia-bark/blob/master/doc/log.md) 提供自定义形式的日志，每条日志为一个日志对象，并基于4种级别日志(trace, info, warn, error)提供相应的css类型，可自定义颜色等样式。
-- [网络状态 NetService](https://github.com/begoniajs/begonia-bark/blob/master/doc/doc/netStatus.md) 利用小程序api检测网络状态和监控网络状态
-- [通用对象池 pool](https://github.com/begoniajs/begonia-bark/blob/master/doc/doc/pool.md) 利用一个类的构造函数创建此类的专属对象池，通过管理对象获取和回收，控制内存使用。
-- [缓存处理 StorageManager](https://github.com/begoniajs/begonia-bark/blob/master/doc/doc/storage.md) 将小程序缓存api进行封装，提供特定的格式来存储数据的值、过期时间和参数等信息，并提供过期检查、过期删除等功能。
-- [版本检测 versionCheck](https://github.com/begoniajs/begonia-bark/blob/master/doc/doc/versionCheck.md) 通过对当前运行的环境的小程序基础库版本和指定的基础库版本进行对比，可以利用结果回调来判断是否应提示用户进行升级。
-- [线程管理 WorkerManager](https://github.com/begoniajs/begonia-bark/blob/master/doc/doc/worker.md) 封装了小程序worker的api，内置worker使用队列，并提供自动销毁自动切换线程任务的功能。
+- [网络状态 NetService](https://github.com/begoniajs/begonia-bark/blob/master/doc/netStatus.md) 利用小程序api检测网络状态和监控网络状态
+- [通用对象池 pool](https://github.com/begoniajs/begonia-bark/blob/master/doc/pool.md) 利用一个类的构造函数创建此类的专属对象池，通过管理对象获取和回收，控制内存使用。
+- [缓存处理 StorageManager](https://github.com/begoniajs/begonia-bark/blob/master/doc/storage.md) 将小程序缓存api进行封装，提供特定的格式来存储数据的值、过期时间和参数等信息，并提供过期检查、过期删除等功能。
+- [版本检测 versionCheck](https://github.com/begoniajs/begonia-bark/blob/master/doc/versionCheck.md) 通过对当前运行的环境的小程序基础库版本和指定的基础库版本进行对比，可以利用结果回调来判断是否应提示用户进行升级。
+- [线程管理 WorkerManager](https://github.com/begoniajs/begonia-bark/blob/master/doc/worker.md) 封装了小程序worker的api，内置worker使用队列，并提供自动销毁自动切换线程任务的功能。
 
 ## license
 

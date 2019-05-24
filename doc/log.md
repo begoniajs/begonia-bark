@@ -148,7 +148,7 @@ let list = Log.logList;
 Log.debug = true; // or false
 ```
 
-在debug模式下，记录日志的同事，还会在开发者工具的控制台输出一条日志。其余console的对应是：
+在debug模式下，记录日志的同时，还会在开发者工具的控制台输出一条日志。其与console的对应是：
 
 ```
 trace ---> console.log
