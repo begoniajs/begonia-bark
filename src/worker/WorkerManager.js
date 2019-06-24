@@ -1,5 +1,6 @@
 /**
  * 小程序线程管理模块
+ * @version 1.0.7
  * @author Brave Chan on 2018.3.29
  */
 //============================================
@@ -56,7 +57,10 @@ function createWorker(workerKey, path) {
  * 终结当前worker并继续下一个worker
  */
 function terminateAndNext() {
-  clearWorkers();
+  let nextKey = waitList[0] || {};
+  if (!_cKey || _cKey !== nextKey) {
+    clearWorkers();
+  }
 
   if (waitList.length <= 0) {
     return;
