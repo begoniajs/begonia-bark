@@ -22,21 +22,21 @@ declare namespace WorkerManager {
    * @public
    * @description 获取注册的worker列表
    * 只有在开启了debug模式的情况才可用
-   * @returns {object}
+   * @returns {any}
    */
-  export const workers: object;
+  export const workers: any;
   /**
    * @public
    * @description 获取所有已经注册的worker标识集合
-   * @returns {object}
+   * @returns {any}
    */
-  export const workerKeys: object;
+  export const workerKeys: any;
   /**
    * @public
    * @description 应用配置文件
-   * @param {object} config
+   * @param {any} config
    */
-  export function config(config: object): void;
+  export function config(config: any): void;
   /**
    * @public
    * @description 动态注册一个worker
@@ -47,15 +47,15 @@ declare namespace WorkerManager {
    * }
    * ```
    */
-  export function rejester(opt: object): void;
+  export function rejester(opt: any): void;
   /**
  * @public
  * @description 向worker发送消息
  * @param {string} workerKey [required] 要使用的worker的键名
- * @param {object} data [optional] 发送的消息数据对象
- * @param {(err: object, res: any) => void} cb [optional] 结果回调函数
+ * @param {any} data [optional] 发送的消息数据对象
+ * @param {(err: any, res: any) => void} cb [optional] 结果回调函数
  */
-  export function message(workerKey: string, data?: object, cb?: (err: object, res: any) => void): void;
+  export function message(workerKey: string, data?: any, cb?: (err: any, res: any) => void): void;
   /**
    * @public
    * @description 清空所有的workers
