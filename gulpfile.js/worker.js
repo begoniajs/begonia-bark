@@ -3,7 +3,7 @@ const { combineRollupConfig, cpTypes } = require('./util');
 
 const config = {
   input: './src/worker/WorkerManager.js',
-  fileName: 'WorkerManger',
+  fileName: 'WorkerManager',
   outDir: './dist/worker',
   banner: `// bebark/WorkerManager v1.0.0 by Brave Chan`
 };
