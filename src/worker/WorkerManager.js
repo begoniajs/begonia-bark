@@ -30,10 +30,15 @@ function doMessage(data, cb = noop) {
   }
 
   _cWorker.onMessage(function (res) {
-    terminateAndNext();
+    let goOnData = terminateAndNext();
     _working = false;
 
     cb(null, res);
+
+    // 如果是需要继续使用当前的worker，那就使用下一份数据继续
+    if (goOnData) {
+      doMessage(goOnData.data, goOnData.cb);
+    }
   });
 
   _cWorker.postMessage(data);
@@ -57,7 +62,7 @@ function createWorker(workerKey, path) {
  * 终结当前worker并继续下一个worker
  */
 function terminateAndNext() {
-  let nextKey = waitList[0] || {};
+  let nextKey = (waitList[0] || {}).workerKey;
   if (!_cKey || _cKey !== nextKey) {
     clearWorkers();
   }
@@ -67,6 +72,11 @@ function terminateAndNext() {
   }
 
   let opt = waitList.shift();
+
+  // 如果需要继续使用当前worker，直接返回所要使用的数据
+  if (_cKey === nextKey) {
+    return opt;
+  }
   message(opt.workerKey, opt.data, opt.cb);
 }
 
