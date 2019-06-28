@@ -1,6 +1,6 @@
 {
   "name": "bebark",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "A tool library for the begonia framework",
   "main": "index.js",
   "scripts": {

@@ -72,7 +72,7 @@ class LogItem {
     this.className = style[type];
     this.message = message;
     this.detail = detail;
-    let timeNum = Date().now();
+    let timeNum = Date.now();
     this.time = formatTime(timeNum, false);
     this.id = timeNum + Math.random();
   }
