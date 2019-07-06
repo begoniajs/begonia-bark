@@ -1,4 +1,10 @@
 /**
+ * @description http请求工具
+ * @author Brave Chan on 2019
+ * @version v1.0.14
+ */
+//============================================================
+/**
  * 发送post请求
  * @param {String} url [required] 请求地址
  * @param {any} data [optional] 参数
@@ -17,9 +23,12 @@ function post(url = '', data = {}, opt = {}) {
       data: data,
       dataType: 'json',
       method: 'POST',
-      header: Object.assign({}, opt.header || {}, {
-        'content-type': 'application/x-www-form-urlencoded',
-      }),
+      header: Object.assign(
+        {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        opt.header || {}
+      ),
       success(res) {
         let canUse = res && res.data;
         if (!canUse) {
@@ -58,7 +67,7 @@ function get(url = '', data = {}, opt = {}) {
       data: data,
       dataType: 'json',
       method: 'GET',
-      header: Object.assign({}, opt.header || {}, {}),
+      header: Object.assign({}, opt.header || {}),
       success(res) {
         let canUse = res && res.data;
         if (!canUse) {
